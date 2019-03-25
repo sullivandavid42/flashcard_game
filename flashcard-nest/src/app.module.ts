@@ -4,11 +4,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CardsModule } from './cards/cards.module';
 import { DATABASE_CONFIG } from './config/database.config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [CardsModule,
 
     TypeOrmModule.forRoot(DATABASE_CONFIG),
+
+    AuthModule,
   ],
 
   controllers: [AppController],
