@@ -16,12 +16,16 @@ export class CardsService {
     async getAll(): Promise<Cards[]> {
         Logger.log('getAll', CardsService.name);
         return (this.cardRepository.find({
+            relations: ['category'],
         }));
     }
 
     async getOne(cardId: number): Promise<Cards> {
         Logger.log('getOne', CardsService.name);
-        return (this.cardRepository.findOne(cardId));
+        return (this.cardRepository.findOne({
+            where: [{ id: cardId }],
+            relations: ['category'],
+        }));
     }
 
     async create(cardDto: CardDto): Promise<Cards> {
@@ -36,6 +40,7 @@ export class CardsService {
             frontdesc: cardDto.frontdesc || card.frontdesc,
             backdesc: cardDto.backdesc || card.backdesc,
             isAchieved: cardDto.isAchieved || card.isAchieved,
+            category: cardDto.category || card.category,
         };
         await this.cardRepository.update(cardId, payloaderCard);
         return await this.cardRepository.findOne(cardId);
