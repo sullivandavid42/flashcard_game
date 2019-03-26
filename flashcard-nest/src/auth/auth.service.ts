@@ -34,5 +34,4 @@ export class AuthService {
     getSecretKey() {
         return this.secretKey;
     }
-
 }

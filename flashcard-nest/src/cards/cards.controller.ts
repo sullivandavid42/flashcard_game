@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Logger, HttpException, HttpStatus, Put, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Logger, HttpException, HttpStatus, Put, Delete, UseGuards, Req, Query } from '@nestjs/common';
 
 import { CardDto } from './dto/cards.dto';
 import { CardsService } from './cards.service';
@@ -24,7 +24,7 @@ export class CardsController {
     @Get(':cardId')
     async getOne(@Param('cardId') cardId: number) {
         Logger.log('GetOne', CardsController.name);
-
+        console.log(cardId);
         const card = await this.cardsService.getOne(cardId);
         if (card) {
             return (card);
@@ -32,8 +32,17 @@ export class CardsController {
         throw new HttpException('Card does not exists', HttpStatus.NOT_FOUND);
     }
 
+    @Get('/user/:idUser')
+    async getAllFromUser(@Param('idUser') idUser: number) {
+        Logger.log('getAllFromUser', CardsController.name);
+        const cards = await this.cardsService.getAllFromUser(idUser);
+        if (cards)
+            return cards;
+        throw new HttpException('No cards to user', HttpStatus.NOT_FOUND);
+    }
+
     @Post()
-    async create(@Body() cardDto: CardDto) {
+    async create(@Body() cardDto: CardDto, @Req() req) {
         Logger.log('Create', CardsController.name);
         if (cardDto && cardDto.title && cardDto.frontdesc && cardDto.backdesc) {
             const card = await this.cardsService.create(cardDto);

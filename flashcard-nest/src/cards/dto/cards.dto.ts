@@ -1,4 +1,5 @@
 import { Categories } from "src/categories/categories.entity";
+import { User } from "src/users/users.entity";
 
 export interface CardDto {
     title: string;
@@ -7,4 +8,5 @@ export interface CardDto {
     isAchieved: boolean;
     isPublic: boolean;
     category: Categories;
+    user: User;
 }

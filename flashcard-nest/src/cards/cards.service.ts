@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 
 import { Cards } from './cards.entity';
 import { CardDto } from './dto/cards.dto';
+import { User } from 'src/users/users.entity';
 
 @Injectable()
 export class CardsService {
@@ -25,6 +26,14 @@ export class CardsService {
         return (this.cardRepository.findOne({
             where: [{ id: cardId }],
             relations: ['category'],
+        }));
+    }
+
+    async getAllFromUser(userId: number): Promise<Cards[]> {
+        Logger.log('getAllFromUser', CardsService.name);
+        return (this.cardRepository.find({
+            relations: ['user'],
+            where: [{ user: userId }]
         }));
     }
 
