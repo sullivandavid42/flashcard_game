@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtPayload } from './jwt-payload.interface';
 import * as jwt from 'jsonwebtoken';
+import { UsersService } from 'src/users/users.service';
 
 export interface Token {
     expiresIn: number;

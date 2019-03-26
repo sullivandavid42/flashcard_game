@@ -1,7 +1,8 @@
-import { Controller, Get, Param, Post, Body, Logger, HttpException, HttpStatus, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Logger, HttpException, HttpStatus, Put, Delete, UseGuards } from '@nestjs/common';
 
 import { CardDto } from './dto/cards.dto';
 import { CardsService } from './cards.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('cards')
 export class CardsController {
@@ -9,7 +10,7 @@ export class CardsController {
     constructor(private readonly cardsService: CardsService) {
 
     }
-
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     async getAll() {
         Logger.log('GetAll', CardsController.name);

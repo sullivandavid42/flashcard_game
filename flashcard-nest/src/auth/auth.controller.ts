@@ -1,4 +1,6 @@
 import { Controller, Post, HttpStatus, HttpException, Body } from '@nestjs/common';
+import { Token, AuthService } from './auth.service';
+import { UsersService } from 'src/users/users.service';
 
 @Controller('auth')
 export class AuthController {
@@ -9,7 +11,7 @@ export class AuthController {
     @Post('token')
     async createToken(
         @Body('email') email: string,
-        @Body('password') password: string
+        @Body('password') password: string,
     ): Promise<Token> {
         const userFound = await this.userService.findMatchEmailPassword(email, password);
         // do not give details whether an email exists or if the password is wrong
