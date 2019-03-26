@@ -17,7 +17,8 @@ export class CardsService {
     async getAll(): Promise<Cards[]> {
         Logger.log('getAll', CardsService.name);
         return (this.cardRepository.find({
-            relations: ['category'],
+            relations: ['category', 'user'],
+            order: { id: 'ASC' }
         }));
     }
 
@@ -25,7 +26,7 @@ export class CardsService {
         Logger.log('getOne', CardsService.name);
         return (this.cardRepository.findOne({
             where: [{ id: cardId }],
-            relations: ['category'],
+            relations: ['category', 'user'],
         }));
     }
 
@@ -33,7 +34,8 @@ export class CardsService {
         Logger.log('getAllFromUser', CardsService.name);
         return (this.cardRepository.find({
             relations: ['user'],
-            where: [{ user: userId }]
+            where: [{ user: userId }],
+            order: { id: 'ASC' },
         }));
     }
 
