@@ -3,10 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-export class ErrorUserIdAlreadyExists extends Error {
-    message = 'This ID already exists';
-}
-
 export class ErrorUserEmailAlreadyExists extends Error {
     message = 'This email already exists';
 }
@@ -17,10 +13,6 @@ export class UsersService {
         @InjectRepository(User) private readonly userRepository: Repository<User>) { }
 
     async register(user: User): Promise<User> {
-        const idAlreadyExists = await this.findOneById(user.id);
-
-        if (idAlreadyExists) { throw new ErrorUserIdAlreadyExists(); }
-
         const emailAlreadyExists = await this.findOneByEmail(user.email);
 
         if (emailAlreadyExists) { throw new ErrorUserEmailAlreadyExists(); }
@@ -29,7 +21,7 @@ export class UsersService {
         return newUser;
     }
 
-    findOneById(id: string): Promise<User> {
+    findOneById(id: number): Promise<User> {
         return this.userRepository.findOne(id);
     }
 
