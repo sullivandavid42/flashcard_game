@@ -6,6 +6,7 @@ import { CardsModule } from './cards/cards.module';
 import { DATABASE_CONFIG } from './config/database.config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [CardsModule,
@@ -15,6 +16,8 @@ import { UsersModule } from './users/users.module';
     AuthModule,
 
     UsersModule,
+
+    CategoriesModule,
   ],
 
   controllers: [AppController],

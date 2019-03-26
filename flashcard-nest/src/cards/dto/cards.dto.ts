@@ -3,4 +3,5 @@ export interface CardDto {
     frontdesc: string;
     backdesc: string;
     isAchieved: boolean;
+    isPublic: boolean;
 }
