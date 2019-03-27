@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title slot="start">
+      Categories
+    </ion-title>
+    <ion-searchbar placeholder="Search a category" slot="end" class="searchbar"></ion-searchbar>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item detail="false" *ngFor="let item of items" (click)="onCategoryClick(item)" class="categoryItem">
+
+
+
+      <ion-icon [name]="item.icon" slot="start"></ion-icon>
+      {{item.title}}
+
+      <ion-button slot="end" color="success">
+        Lancer
+        <ion-icon name="play"></ion-icon>
+      </ion-button>
+
+      <ion-button slot="end" color="danger">
+        Supprimer
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>
