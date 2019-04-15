@@ -1,0 +1,56 @@
+<nz-layout class="main_layout">
+  <nz-sider [nzTrigger]="triggerTemplate">
+    <div class="logo">
+      <img class="panda_png" src="../../../assets/panda.png">
+    </div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'">
+
+      <li nz-submenu>
+        <span title><i nz-icon type="user"></i><span class="nav-text">Utilisateur</span></span>
+        <ul>
+          <li nz-menu-item>
+            <a [routerLink]="['/profil']">
+              Mon profil
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a [routerLink]="['/statistiques']">
+              Statistiques
+            </a>
+          </li>
+          <li nz-menu-item class="disconnect_btn">
+            <a [routerLink]="['/logout']">
+              Déconnexion
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu>
+        <span title><i nz-icon type="book"></i><span class="nav-text">Cartes</span></span>
+        <ul>
+          <li nz-menu-item>
+            <a [routerLink]="['/categories']">
+              Catégories
+            </a>
+          </li>
+          <li nz-menu-item>A travailler</li>
+          <li nz-menu-item>Gérer mes cartes</li>
+        </ul>
+      </li>
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-content style="margin:0 16px;">
+      <nz-breadcrumb style="margin:16px 0;">
+        <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div style="padding:24px; background: #fff; min-height: 360px;">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer style="text-align: center;">Sullivan DAVID</nz-footer>
+  </nz-layout>
+</nz-layout>

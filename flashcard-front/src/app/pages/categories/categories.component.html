@@ -1,0 +1,43 @@
+<div class="header_btn">
+  <button nz-button (click)="addRow()" nzType="primary">
+    <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+    Ajouter une catégorie
+  </button>
+
+  <button class="btn_random" nz-button nzType="primary">
+    <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+    Jeu aléatoire
+  </button>
+</div>
+
+<nz-table #editRowTable nzBordered [nzData]="listOfData">
+  <thead>
+    <tr>
+      <th nzWidth="30%">Categorie</th>
+      <th>Public</th>
+      <th>Nombre de cartes</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of editRowTable.data" class="editable-row">
+      <td>
+        <div class="editable-cell" *ngIf="editId !== data.id; else editTpl">
+          <div class="editable-cell-value-wrap" (click)="startEdit(data.id, $event)">
+            {{ data.name }}
+          </div>
+        </div>
+        <ng-template #editTpl>
+          <input id="inputCat" type="text" nz-input [(ngModel)]="data.name" />
+        </ng-template>
+      </td>
+      <td>{{ data.age }}</td>
+      <td>{{ data.address }}</td>
+      <td>
+        <a>Cartes</a> <span> | </span>
+        <a nz-popconfirm nzTitle="Supprimer la catégorie et ses cartes ?"
+          (nzOnConfirm)="deleteRow(data.id)">Supprimer</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

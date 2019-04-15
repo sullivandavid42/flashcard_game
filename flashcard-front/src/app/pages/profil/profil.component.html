@@ -1,0 +1,32 @@
+<div>
+
+  <div nz-row>
+
+    <div nz-col nzSpan="2">
+      <nz-avatar [nzShape]="'square'" [nzSize]="64" [nzIcon]="'user'"></nz-avatar>
+    </div>
+
+    <div nz-col nzSpan="6" style="display: flex; flex-direction: column">
+      <span> <strong> John Doe </strong></span>
+      <span> Interne HEH </span>
+      <span> Lyon </span>
+    </div>
+
+  </div>
+
+  <nz-divider></nz-divider>
+
+  <div nz-row>
+    <div nz-col nzSpan="6" style="padding-right: 1em;">
+      <input nz-input placeholder="Prénom" [(ngModel)]="value" [disabled]="true" /> <br> <br>
+      <input nz-input placeholder="Nom" [(ngModel)]="value" [disabled]="true" /> <br> <br>
+      <input nz-input placeholder="Email" [(ngModel)]="value" [disabled]="true" /> <br> <br>
+    </div>
+    <div nz-col nzSpan="6">
+      <input nz-input placeholder="Fonction" [(ngModel)]="value" [disabled]="true" /> <br> <br>
+      <input nz-input placeholder="Ville" [(ngModel)]="Pays" [disabled]="true" /> <br> <br>
+      <input nz-input placeholder="Ville" [(ngModel)]="value" [disabled]="true" /> <br>
+    </div>
+  </div>
+
+</div>
